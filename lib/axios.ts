@@ -1,8 +1,7 @@
-import logger from './log';
+import log from './log';
 import axios from 'axios';
 
 const instance = axios.create();
-const log = logger.getLogger('AXIOS');
 
 instance.interceptors.request.use(function (config) {
   config.headers = {
@@ -20,7 +19,7 @@ instance.interceptors.response.use((res) => {
   let url = res.config.url;
   let startTime = parseInt(res.config?.headers?.rqStartTime || "0");
   let time = startTime != 0 ? new Date().getTime() - startTime : "Time Error";
-  log.info(`${status} ${method} ${url} ${time}ms`);
+  log.info(`[AXIOS] ${status} ${method} ${url} ${time}ms`);
   return res;
 }, (res) => {
   let response = res.response || {};
@@ -30,7 +29,7 @@ instance.interceptors.response.use((res) => {
   let body = res.request?.body || {};
   let startTime = parseInt(res.config?.headers?.rqStartTime || "0");
   let time = startTime != 0 ? new Date().getTime() - startTime : "Time Error";
-  log.error(`${status} ${method} ${url} ${time}ms\nRequest Body`, body);
+  log.error(`[AXIOS] ${status} ${method} ${url} ${time}ms\nRequest Body`, body);
   return res;
 });
 
