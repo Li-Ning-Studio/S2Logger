@@ -1,7 +1,7 @@
-# S2Logger
-S2Logger provides a library for simple logging as shown below on both frontend and backend, and a drop-in replacement for ```axios``` that works exactly as axios since it just uses interceptors for logging, and logs key events such as all (200 or Error Code) requests and the time taken by the request. **This is not an alternative to catching or handling errors in axios, but it will allow you to not have to think about the bare minimum of logging that a request happened and whether it failed or was a success.**
+# s2logger
+s2logger provides a library for simple logging as shown below on both frontend and backend, and a drop-in replacement for ```axios``` that works exactly as axios since it just uses interceptors for logging, and logs key events such as all (200 or Error Code) requests and the time taken by the request. **This is not an alternative to catching or handling errors in axios, but it will allow you to not have to think about the bare minimum of logging that a request happened and whether it failed or was a success.**
 ```typescript
-import {log} from 'S2Logger';
+import {log} from 's2logger';
 log.trace("Trace Event");
 log.debug("This is a debug event", SOME_OBJ);
 log.info(res.status_code, res.url);
@@ -42,10 +42,10 @@ log.error(...);
 ```
 
 ## Axios
-Axios part of S2Logger works exactly like axios, just instead of importing from axios  you can import from S2Logger.
+Axios part of s2logger works exactly like axios, just instead of importing from axios  you can import from s2logger.
 
 ```javascript
-import {axios} from 'S2Logger';
+import {axios} from 's2logger';
 axios.post('http://httpstat.us/200', {"hello":"world"});
 ```
 
@@ -71,7 +71,7 @@ The purpose of this library is to allow us to set the Log Level of the current e
  - ERROR - Errors only
  - SILENT - No logging
 
-By default S2Logger looks in the environment for two environment variables. Since this library is designed to be used in both frontend and backend it allows you to set the log levels of both independently. **Both log levels default to ERROR.**
+By default s2logger looks in the environment for two environment variables. Since this library is designed to be used in both frontend and backend it allows you to set the log levels of both independently. **Both log levels default to ERROR.**
 #### Backend Log Level 
 ```env
 LOG_LEVEL = TRACE
@@ -85,7 +85,7 @@ NEXT_PUBLIC_LOG_LEVEL = ERROR
 ## Environments without Env Variables (e.g Firebase)
 In environments without environment variables you can force set the log level by - 
 ```javascript
-import {log} from 'S2Logger';
+import {log} from 's2logger';
 import * as functions from "firebase-functions";
 const config = functions.config();
 log.setLevel(config.LogLevel);
