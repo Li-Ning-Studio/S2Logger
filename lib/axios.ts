@@ -15,7 +15,7 @@ instance.interceptors.request.use(function (config) {
 
 instance.interceptors.response.use((res) => {
   let status = res?.status || "NO_STATUS_CODE";
-  let method = res?.request?.method?.toUpperCase() || "NO_METHOD";
+  let method = res?.config?.method?.toUpperCase() || "NO_METHOD";
   let url = res?.config?.url || "NO_URL";
   let startTime = parseInt(res.config?.headers?.rqStartTime || "0");
   let time = startTime != 0 ? new Date().getTime() - startTime : "Time Error";
@@ -24,7 +24,7 @@ instance.interceptors.response.use((res) => {
 }, (res) => {
   let response = res.response || {};
   let status = response.status || "NO_STATUS_CODE";
-  let method = res?.request?.method?.toUpperCase() || "NO_METHOD";
+  let method = res?.config?.method?.toUpperCase() || "NO_METHOD";
   let url = res?.config?.url || "NO_URL";
   let body = res.request?.body || {};
   let startTime = parseInt(res.config?.headers?.rqStartTime || "0");
