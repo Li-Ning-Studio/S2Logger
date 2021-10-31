@@ -1,4 +1,4 @@
-import log from './log';
+import {log} from '../index';
 import axios from 'axios';
 
 const instance = axios.create();

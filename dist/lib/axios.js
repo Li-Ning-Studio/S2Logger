@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const log_1 = __importDefault(require("./log"));
+const index_1 = require("../index");
 const axios_1 = __importDefault(require("axios"));
 const instance = axios_1.default.create();
 instance.interceptors.request.use(function (config) {
@@ -19,7 +19,7 @@ instance.interceptors.response.use((res) => {
     let url = res.config.url;
     let startTime = parseInt(((_b = (_a = res.config) === null || _a === void 0 ? void 0 : _a.headers) === null || _b === void 0 ? void 0 : _b.rqStartTime) || "0");
     let time = startTime != 0 ? new Date().getTime() - startTime : "Time Error";
-    log_1.default.info(`[AXIOS] ${status} ${method} ${url} ${time}ms`);
+    index_1.log.info(`[AXIOS] ${status} ${method} ${url} ${time}ms`);
     return res;
 }, (res) => {
     var _a, _b, _c;
@@ -30,7 +30,7 @@ instance.interceptors.response.use((res) => {
     let body = ((_a = res.request) === null || _a === void 0 ? void 0 : _a.body) || {};
     let startTime = parseInt(((_c = (_b = res.config) === null || _b === void 0 ? void 0 : _b.headers) === null || _c === void 0 ? void 0 : _c.rqStartTime) || "0");
     let time = startTime != 0 ? new Date().getTime() - startTime : "Time Error";
-    log_1.default.error(`[AXIOS] ${status} ${method} ${url} ${time}ms\nRequest Body`, body);
+    index_1.log.error(`[AXIOS] ${status} ${method} ${url} ${time}ms\nRequest Body`, body);
     return res;
 });
 exports.default = instance;
