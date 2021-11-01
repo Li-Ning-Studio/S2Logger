@@ -12,6 +12,12 @@ log.error("Unable to reach host");
 ```javascript
 axios.post('http://httpstat.us/200', {"hello":"world"});
 ```
+
+## Installation
+```bash
+npm install https://github.com/Li-Ning-Studio/S2Logger
+```
+
 ## Log
 
 ### Log Levels
